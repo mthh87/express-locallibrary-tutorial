@@ -6,14 +6,14 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var catalogRouter = require('/routes/catalog'); // import routes for catalog
+var catalogRouter = require('./routes/catalog'); // import routes for catalog
 
 var app = express();
 
 // set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://lluser:BlargBlargBoo@cluster0.dvq5p.mongodb.net/local_library?retryWrites=true&w=majority';
-//             mongodb+srv://lluser:<password>   @cluster0.dvq5p.mongodb.net/local_library?retryWrites=true&w=majority
+var mongoConnection = require('./mongoConnection');  // exports.connectionString = '<connectionString>';
+var mongoDB = mongoConnection.connectionString; 
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection Error:'));
