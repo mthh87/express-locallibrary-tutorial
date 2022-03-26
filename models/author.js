@@ -31,18 +31,21 @@ AuthorSchema
     .virtual('lifespan')
     .get(function() {
         var lifetime_string = '';
-        if (this.date_of_birth) {
-            lifetime_string = this.date_of_birth.getYear().toString();
-        }
+//        if (this.date_of_birth) {
+//            lifetime_string = this.date_of_birth.getYear().toString();
+            lifetime_string = this.date_of_birth_formatted.toString();
+//}
         lifetime_string += ' - ';
-        if (this.date_of_death) {
-            lifetime_string += this.date_of_death.getYear().toString();
-        }
+//        if (this.date_of_death) {
+//            lifetime_string += this.date_of_death.getYear().toString();
+            lifetime_string += this.date_of_death_formatted.toString();
+//}
         return lifetime_string;
     });
 
 AuthorSchema
-    .virtual('url').get(function() {
+    .virtual('url')
+    .get(function() {
         return '/catalog/author/' + this._id;
     });
 
