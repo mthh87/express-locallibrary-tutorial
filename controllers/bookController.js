@@ -78,7 +78,7 @@ exports.book_detail = function(req, res) {
 };
 
 // Display book create form on GET.
-exports.book_create_get = function(req, res) {
+exports.book_create_get = function(req, res, next) {
 //    res.send('NOT IMPLEMENTED: Book create GET');
     async.parallel({
         authors: function(callback) {
